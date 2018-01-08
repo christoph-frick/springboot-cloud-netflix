@@ -1,0 +1,20 @@
+server.port: 8081
+spring:
+        application.name: monitor-application
+        main.banner-mode: "off"
+        cloud.config:
+                discovery:
+                        enabled: true
+                        serviceId: config-server
+
+turbine:
+        appConfig: rest-application, proxy-server
+        clusterNameExpression: "'default'"
+
+eureka:
+        client:
+                serviceUrl:
+                        defaultZone: http://localhost:7001/eureka/
+                registryFetchIntervalSeconds: 1
+                instance:
+                        leaseRenewalIntervalInSeconds: 1

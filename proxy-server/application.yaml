@@ -1,0 +1,30 @@
+server.port: 8080
+
+endpoints.health.enabled: true
+
+spring:
+        application.name: proxy-server
+        cloud.config.discovery:
+                enabled: true
+                serviceId: config-server
+        main.banner-mode: "off"
+
+eureka:
+        client:
+                serviceUrl:
+                        defaultZone: http://localhost:7001/eureka/
+                registryFetchIntervalSeconds: 1
+        instance:
+                leaseRenewalIntervalInSeconds: 1
+
+zuul:
+        ignoredServices: '*'
+        routes:
+                rest-application:
+                        path: /rest/**
+                        serviceId: rest-application
+                        sensitiveHeaders:
+                monitor-application:
+                        path: /monitor/**
+                        serviceId: monitor-application
+                        sensitiveHeaders:

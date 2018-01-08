@@ -1,0 +1,14 @@
+server.port: 8888
+spring:
+        application.name: config-server
+        main.banner-mode: "off"
+        cloud.config.server.git.uri: file://${user.home}/src/scratchpad/springboot-cloud-netflix-groovy
+management.security.enabled: false
+
+eureka:
+        client:
+                serviceUrl:
+                        defaultZone: http://localhost:7001/eureka/
+                registryFetchIntervalSeconds: 1
+        instance:
+                leaseRenewalIntervalInSeconds: 1
